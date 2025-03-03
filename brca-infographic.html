@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>若年BRCA保因者の乳がん臨床挙動と診断前BRCA状態の認識</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    
+    :root {
+      --fashion-1: #593C47;
+      --fashion-2: #F2E63D;
+      --fashion-3: #F2C53D;
+      --fashion-4: #F25C05;
+      --fashion-5: #F24405;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Kaisei Decol', serif;
+      background-color: #f8f9fa;
+      color: #334155;
+      line-height: 1.4;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--fashion-1);
+    }
+    
+    .title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--fashion-1);
+      text-shadow: 1px 1px 0 var(--fashion-3);
+      position: relative;
+    }
+    
+    .title:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--fashion-3), var(--fashion-4), var(--fashion-5));
+    }
+    
+    .date {
+      font-family: 'Yomogi', cursive;
+      font-size: 16px;
+      color: #475569;
+    }
+    
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .section {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+    }
+    
+    .section.primary:before {
+      background-color: var(--fashion-4);
+    }
+    
+    .section.secondary:before {
+      background-color: var(--fashion-3);
+    }
+    
+    .section.tertiary:before {
+      background-color: var(--fashion-2);
+    }
+    
+    .section-title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 18px;
+      color: #1e40af;
+      margin-bottom: 15px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .section-title i {
+      margin-right: 8px;
+      color: var(--fashion-4);
+    }
+    
+    .content {
+      font-size: 14px;
+    }
+    
+    .highlight {
+      background: linear-gradient(transparent 60%, var(--fashion-2) 40%);
+      font-weight: bold;
+    }
+    
+    .comparison {
+      display: flex;
+      margin: 15px 0;
+      gap: 15px;
+    }
+    
+    .comparison-item {
+      flex: 1;
+      padding: 15px;
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .comparison-item.brca1 {
+      background-color: rgba(242, 197, 61, 0.2);
+      border: 2px dashed var(--fashion-3);
+    }
+    
+    .comparison-item.brca2 {
+      background-color: rgba(242, 92, 5, 0.1);
+      border: 2px dashed var(--fashion-4);
+    }
+    
+    .comparison-item h4 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--fashion-1);
+    }
+    
+    .data-point {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+    
+    .data-point i {
+      margin-right: 8px;
+      color: var(--fashion-4);
+    }
+    
+    .arrow {
+      position: relative;
+      margin: 20px 0;
+      height: 30px;
+    }
+    
+    .arrow:after {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0,10 C30,5 70,15 90,10 L90,5 L100,10 L90,15 L90,10' fill='none' stroke='%23F25C05' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      left: 10%;
+    }
+    
+    .key-finding {
+      background-color: rgba(89, 60, 71, 0.05);
+      border-left: 4px solid var(--fashion-1);
+      padding: 10px 15px;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+    
+    .visual-graph {
+      height: 150px;
+      margin: 20px 0;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Cpath d='M0,50 C10,45 20,30 30,35 C40,40 50,10 60,5 C70,0 80,20 90,25 C100,30 100,50 100,50 Z' fill='rgba(242, 197, 61, 0.3)' stroke='%23F2C53D' stroke-width='2' /%3E%3Cpath d='M0,50 C10,40 20,45 30,40 C40,35 50,25 60,30 C70,35 80,15 90,20 C100,25 100,50 100,50 Z' fill='rgba(242, 92, 5, 0.2)' stroke='%23F25C05' stroke-width='2' /%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+    
+    .legend-color {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-radius: 3px;
+    }
+    
+    .circle-stat {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .circle-stat:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px dashed;
+      top: 0;
+      left: 0;
+    }
+    
+    .circle-stat.primary:before {
+      border-color: var(--fashion-3);
+    }
+    
+    .circle-stat.secondary:before {
+      border-color: var(--fashion-4);
+    }
+    
+    .circle-stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .circle-stat-label {
+      font-size: 12px;
+      text-align: center;
+    }
+    
+    .hand-drawn-box {
+      border: 2px solid;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      position: relative;
+    }
+    
+    .hand-drawn-box.primary {
+      border-color: var(--fashion-3);
+      background-color: rgba(242, 197, 61, 0.1);
+    }
+    
+    .hand-drawn-box.secondary {
+      border-color: var(--fashion-4);
+      background-color: rgba(242, 92, 5, 0.1);
+    }
+    
+    .hand-drawn-box h4 {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background-color: white;
+      padding: 0 10px;
+      font-family: 'Zen Kurenaido', sans-serif;
+      color: var(--fashion-1);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--fashion-1);
+      font-size: 12px;
+      color: #64748b;
+    }
+    
+    .emoji-bullet {
+      margin-right: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .comparison {
+        flex-direction: column;
+      }
+      
+      .column {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">若年BRCA保因者の乳がん臨床挙動と診断前BRCA状態の認識</h1>
+      <div class="date">2025年2月24日発表</div>
+    </header>
+    
+    <div class="main-content">
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">📊 研究概要</h2>
+          <div class="content">
+            <p>この国際的な多施設共同後ろ向きコホート研究は、<span class="highlight">40歳以下</span>で診断された乳がんを持つ<span class="highlight">BRCA遺伝子変異保因者4,752人</span>を対象に実施されました。研究の目的は以下の2点です：</p>
+            <div class="hand-drawn-box primary">
+              <h4>研究目的</h4>
+              <p><span class="emoji-bullet">🔍</span>特定のBRCA遺伝子（BRCA1対BRCA2）に基づく若年BRCA保因者における乳がんの臨床挙動を調査する</p>
+              <p><span class="emoji-bullet">🔍</span>遺伝子検査のタイミング（診断前対診断時）と予後の関連性を評価する</p>
+            </div>
+            
+            <div class="circle-stat primary">
+              <div class="circle-stat-number">4,752</div>
+              <div class="circle-stat-label">研究対象患者数</div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">📈 BRCA1とBRCA2の比較</h2>
+          <div class="content">
+            <div class="comparison">
+              <div class="comparison-item brca1">
+                <h4>BRCA1保因者 (n=3,069)</h4>
+                <div class="data-point">
+                  <i>📌</i> ホルモン受容体陰性: <b>74.4%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 高悪性度腫瘍: <b>77.5%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 診断時年齢中央値: <b>34歳</b>
+                </div>
+              </div>
+              <div class="comparison-item brca2">
+                <h4>BRCA2保因者 (n=1,683)</h4>
+                <div class="data-point">
+                  <i>📌</i> ホルモン受容体陰性: <b>15.5%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 高悪性度腫瘍: <b>49.1%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 診断時年齢中央値: <b>35歳</b>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-finding">
+              BRCA1保因者とBRCA2保因者では、腫瘍特性に顕著な違いが見られました。これらは治療選択や予後に影響を与える可能性があります。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section tertiary">
+          <h2 class="section-title">⏳ 無病生存期間パターン</h2>
+          <div class="content">
+            <p>BRCA1保因者とBRCA2保因者では、時間経過とともに無病生存期間（DFS）イベントのリスクパターンが異なります：</p>
+            <div class="visual-graph"></div>
+            <div class="legend">
+              <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--fashion-3);"></div>
+                <span>BRCA1保因者</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--fashion-4);"></div>
+                <span>BRCA2保因者</span>
+              </div>
+            </div>
+            <ul style="list-style-type: none; margin-top: 15px;">
+              <li><span class="emoji-bullet">📉</span> <b>BRCA1保因者</b>：最初の2年間はリスクが高く、6年目まで減少した後、再びリスクが上昇</li>
+              <li><span class="emoji-bullet">📈</span> <b>BRCA2保因者</b>：最初の3年間はリスクが徐々に増加し、その後一定のまま推移</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">🧬 遺伝子検査のタイミングの影響</h2>
+          <div class="content">
+            <p>BRCA検査のタイミングによる臨床的特徴と予後の比較：</p>
+            <div class="comparison">
+              <div class="comparison-item brca1">
+                <h4>診断前に検査 (n=411)</h4>
+                <div class="data-point">
+                  <i>📌</i> T1腫瘍: <b>61.3%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> リンパ節転移なし: <b>65.9%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 化学療法: <b>84.4%</b>
+                </div>
+              </div>
+              <div class="comparison-item brca2">
+                <h4>診断時に検査 (n=1,671)</h4>
+                <div class="data-point">
+                  <i>📌</i> T1腫瘍: <b>32.4%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> リンパ節転移なし: <b>50.8%</b>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> 化学療法: <b>92.9%</b>
+                </div>
+              </div>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>診断前検査の影響</h4>
+              <p><span class="emoji-bullet">✅</span> より早期の乳がん診断（小さな腫瘍、リンパ節転移の減少）</p>
+              <p><span class="emoji-bullet">✅</span> 治療負担の軽減（化学療法・腋窩郭清の減少）</p>
+              <p><span class="emoji-bullet">✅</span> 非調整全生存率の改善（HR 0.61 [95% CI, 0.40-0.92]）</p>
+              <p><span class="emoji-bullet">⚠️</span> 腫瘍ステージなどの交絡因子で調整後、統計的有意性は失われた（調整HR 0.74 [95% CI, 0.47-1.15]）</p>
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">🔑 主要な発見</h2>
+          <div class="content">
+            <ul style="list-style-type: none;">
+              <li><span class="emoji-bullet">📝</span> BRCA1保因者とBRCA2保因者では、患者特性、腫瘍特性、治療特性が異なる</li>
+              <li><span class="emoji-bullet">📝</span> 無病生存期間イベントの時間的パターンとリスクに差がある</li>
+              <li><span class="emoji-bullet">📝</span> 健康な個人でのBRCA病的バリアント同定は、より早期のがん診断、治療負担の軽減、非調整全生存率の改善と関連</li>
+            </ul>
+            
+            <div class="key-finding">
+              BRCA1保因者とBRCA2保因者では乳がんの生物学的および臨床的挙動が異なるため、サーベイランス、予防、治療、およびサバイバーシップ戦略をパーソナライズする必要があります。
+            </div>
+            
+            <div class="hand-drawn-box primary">
+              <h4>臨床的意義</h4>
+              <p>この世界的研究は、若年BRCA保因者におけるBRCA1とBRCA2遺伝子の違いが乳がんの臨床的挙動に与える影響の証拠を提供しています。健康な個人でBRCA遺伝子変異を特定することにより、早期発見と治療負担の軽減につながる可能性があります。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">📋 研究方法</h2>
+          <div class="content">
+            <p>この研究は以下の特徴を持つ国際的、多施設、病院ベースの後ろ向きコホート研究です：</p>
+            <ul style="list-style-type: none;">
+              <li><span class="emoji-bullet">🌎</span> 世界中の78施設で実施</li>
+              <li><span class="emoji-bullet">📅</span> 2000年1月から2020年12月までの期間</li>
+              <li><span class="emoji-bullet">👥</span> 40歳以下でステージI-III浸潤性乳がんと診断された患者</li>
+              <li><span class="emoji-bullet">🧬</span> BRCA1またはBRCA2の胚細胞系病的/恐らく病的バリアント（PV）保因者</li>
+            </ul>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>研究設計</h4>
+              <p>各施設は現地の臨床慣行に従って診断、ステージング、治療、フォローアップを実施しました。観察期間の中央値は7.8年（IQR, 4.4-12.6年）でした。</p>
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">💡 結論</h2>
+          <div class="content">
+            <p>この研究から得られた主な結論は以下の通りです：</p>
+            
+            <div class="hand-drawn-box primary">
+              <h4>BRCA遺伝子の違い</h4>
+              <p>BRCA1保因者とBRCA2保因者では、乳がんの臨床挙動に明確な違いがあります。この違いは、診断時の特性だけでなく、時間経過に伴う無病生存期間イベントのパターンとリスクにも反映されています。</p>
+            </div>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>早期検査の利点</h4>
+              <p>健康な個人でBRCA病的バリアントを特定することは：</p>
+              <ul style="list-style-type: none;">
+                <li><span class="emoji-bullet">✓</span> より早期ステージでの乳がん診断</li>
+                <li><span class="emoji-bullet">✓</span> 治療負担の軽減</li>
+                <li><span class="emoji-bullet">✓</span> 非調整全生存率の改善</li>
+              </ul>
+            </div>
+            
+            <div class="key-finding">
+              BRCA病的バリアント保因者を特定するための取り組みを強化し、早期発見オプションを提供することで、より良い予後につながる可能性があります。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section tertiary">
+          <h2 class="section-title">🔮 今後の展望</h2>
+          <div class="content">
+            <p>この研究結果に基づく今後の展望として：</p>
+            <ul style="list-style-type: none;">
+              <li><span class="emoji-bullet">📈</span> BRCA1とBRCA2保因者それぞれに合わせたサーベイランス・予防戦略の開発</li>
+              <li><span class="emoji-bullet">🧬</span> BRCA保因者の早期発見につながる遺伝子検査の普及促進</li>
+              <li><span class="emoji-bullet">👩‍⚕️</span> 診断時の特性や特定BRCA遺伝子を考慮したパーソナライズされたフォローアップ戦略</li>
+              <li><span class="emoji-bullet">🔬</span> BRCA1およびBRCA2保因者での治療効果と転帰を別々に報告する臨床試験の推進</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <p>出典: Lambertini, et al. Clinical Behavior of Breast Cancer in Young BRCA Carriers and Prediagnostic Awareness of Germline BRCA Status. J Clin Oncol 2025.</p>
+      <p>ClinicalTrials.gov identifier: NCT03673306</p>
+    </footer>
+  </div>
+</body>
+</html>
