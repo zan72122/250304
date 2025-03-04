@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>若年BRCA保因者の乳がん臨床挙動と診断前BRCA状態の認識：詳細分析</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    
+    :root {
+      --fashion-1: #593C47;
+      --fashion-2: #F2E63D;
+      --fashion-3: #F2C53D;
+      --fashion-4: #F25C05;
+      --fashion-5: #F24405;
+      --light-1: rgba(89, 60, 71, 0.1);
+      --light-2: rgba(242, 230, 61, 0.15);
+      --light-3: rgba(242, 197, 61, 0.2);
+      --light-4: rgba(242, 92, 5, 0.15);
+      --light-5: rgba(242, 68, 5, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Kaisei Decol', serif;
+      background-color: #f8f9fa;
+      color: #334155;
+      line-height: 1.6;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--fashion-1);
+      position: relative;
+    }
+    
+    .header:after {
+      content: "👩‍⚕️ BRCA変異と乳がん研究 👨‍⚕️";
+      position: absolute;
+      right: 5px;
+      bottom: -10px;
+      font-size: 12px;
+      color: var(--fashion-1);
+      background-color: #f8f9fa;
+      padding: 0 10px;
+      font-family: 'Yomogi', cursive;
+    }
+    
+    .title-container {
+      max-width: 70%;
+    }
+    
+    .title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--fashion-1);
+      position: relative;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 0 var(--fashion-3);
+    }
+    
+    .title:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--fashion-3), var(--fashion-4), var(--fashion-5));
+    }
+    
+    .subtitle {
+      font-family: 'Yomogi', cursive;
+      font-size: 16px;
+      color: #475569;
+      margin-top: 8px;
+      font-style: italic;
+    }
+    
+    .date-citation {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    
+    .date {
+      font-family: 'Yomogi', cursive;
+      font-size: 16px;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .date:before {
+      content: "📅";
+    }
+    
+    .citation {
+      font-size: 12px;
+      color: #64748b;
+      max-width: 200px;
+      text-align: right;
+    }
+    
+    .citation:before {
+      content: "📚";
+      margin-right: 5px;
+    }
+    
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .section {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+    }
+    
+    .section.primary:before {
+      background-color: var(--fashion-4);
+    }
+    
+    .section.secondary:before {
+      background-color: var(--fashion-3);
+    }
+    
+    .section.tertiary:before {
+      background-color: var(--fashion-2);
+    }
+    
+    .section-title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 20px;
+      color: #1e40af;
+      margin-bottom: 15px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .section-title:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--fashion-3), transparent);
+    }
+    
+    .section-title i {
+      margin-right: 8px;
+      color: var(--fashion-4);
+    }
+    
+    .content {
+      font-size: 14px;
+    }
+    
+    .highlight {
+      background: linear-gradient(transparent 60%, var(--fashion-2) 40%);
+      font-weight: bold;
+    }
+    
+    .highlight-box {
+      display: inline-block;
+      padding: 0 5px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    
+    .highlight-1 {
+      background-color: var(--light-3);
+      border-bottom: 2px solid var(--fashion-3);
+    }
+    
+    .highlight-2 {
+      background-color: var(--light-4);
+      border-bottom: 2px solid var(--fashion-4);
+    }
+    
+    .comparison {
+      display: flex;
+      margin: 15px 0;
+      gap: 15px;
+    }
+    
+    .comparison-item {
+      flex: 1;
+      padding: 15px;
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .comparison-item.brca1 {
+      background-color: var(--light-3);
+      border: 2px dashed var(--fashion-3);
+    }
+    
+    .comparison-item.brca2 {
+      background-color: var(--light-4);
+      border: 2px dashed var(--fashion-4);
+    }
+    
+    .comparison-item h4 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--fashion-1);
+      padding-bottom: 5px;
+      border-bottom: 1px dotted var(--fashion-1);
+    }
+    
+    .data-point {
+      display: flex;
+      align-items: flex-start;
+      margin: 8px 0;
+      position: relative;
+    }
+    
+    .data-point i {
+      margin-right: 8px;
+      color: var(--fashion-4);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    
+    .data-point-label {
+      margin-right: 5px;
+    }
+    
+    .data-point-value {
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .data-point-ci {
+      font-size: 11px;
+      color: #64748b;
+      display: block;
+    }
+    
+    .arrow {
+      position: relative;
+      margin: 20px 0;
+      height: 30px;
+    }
+    
+    .arrow:after {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0,10 C30,5 70,15 90,10 L90,5 L100,10 L90,15 L90,10' fill='none' stroke='%23F25C05' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      left: 10%;
+    }
+    
+    .key-finding {
+      background-color: rgba(89, 60, 71, 0.05);
+      border-left: 4px solid var(--fashion-1);
+      padding: 10px 15px;
+      margin: 15px 0;
+      font-weight: bold;
+      position: relative;
+    }
+    
+    .key-finding:before {
+      content: "重要ポイント";
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      background-color: white;
+      padding: 0 10px;
+      font-size: 12px;
+      color: var(--fashion-1);
+      border: 1px solid var(--fashion-1);
+      border-radius: 10px;
+    }
+    
+    .visual-graph {
+      height: 200px;
+      margin: 20px 0;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Cpath d='M0,50 C10,45 20,30 30,35 C40,40 50,10 60,5 C70,0 80,20 90,25 C100,30 100,50 100,50 Z' fill='rgba(242, 197, 61, 0.3)' stroke='%23F2C53D' stroke-width='2' /%3E%3Cpath d='M0,50 C10,40 20,45 30,40 C40,35 50,25 60,30 C70,35 80,15 90,20 C100,25 100,50 100,50 Z' fill='rgba(242, 92, 5, 0.2)' stroke='%23F25C05' stroke-width='2' /%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    
+    .visual-graph:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: var(--fashion-1);
+    }
+    
+    .graph-marker {
+      position: absolute;
+      font-size: 12px;
+      color: var(--fashion-1);
+    }
+    
+    .marker-brca1-peak {
+      top: 40px;
+      left: 20px;
+    }
+    
+    .marker-brca1-trough {
+      top: 120px;
+      left: 50%;
+    }
+    
+    .marker-brca1-second {
+      top: 80px;
+      right: 20px;
+    }
+    
+    .marker-brca2-rise {
+      top: 100px;
+      left: 30%;
+    }
+    
+    .marker-brca2-plateau {
+      top: 60px;
+      right: 30%;
+    }
+    
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+    
+    .legend-color {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-radius: 3px;
+    }
+    
+    .circle-stat {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      position: relative;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .circle-stat:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px dashed;
+      top: 0;
+      left: 0;
+      animation: rotate 60s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .circle-stat.primary:before {
+      border-color: var(--fashion-3);
+    }
+    
+    .circle-stat.secondary:before {
+      border-color: var(--fashion-4);
+    }
+    
+    .circle-stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .circle-stat-label {
+      font-size: 12px;
+      text-align: center;
+      padding: 0 10px;
+    }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .stat-item {
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--light-3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--fashion-1);
+      margin: 5px 0;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #475569;
+    }
+    
+    .hand-drawn-box {
+      border: 2px solid;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      position: relative;
+    }
+    
+    .hand-drawn-box.primary {
+      border-color: var(--fashion-3);
+      background-color: var(--light-3);
+    }
+    
+    .hand-drawn-box.secondary {
+      border-color: var(--fashion-4);
+      background-color: var(--light-4);
+    }
+    
+    .hand-drawn-box.tertiary {
+      border-color: var(--fashion-2);
+      background-color: var(--light-2);
+    }
+    
+    .hand-drawn-box.quaternary {
+      border-color: var(--fashion-5);
+      background-color: var(--light-5);
+    }
+    
+    .hand-drawn-box h4 {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background-color: white;
+      padding: 0 10px;
+      font-family: 'Zen Kurenaido', sans-serif;
+      color: var(--fashion-1);
+    }
+    
+    .table-container {
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+    
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    
+    .custom-table th, .custom-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    .custom-table th {
+      background-color: var(--light-1);
+      color: var(--fashion-1);
+      font-weight: bold;
+    }
+    
+    .custom-table tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--fashion-1);
+      font-size: 12px;
+      color: #64748b;
+    }
+    
+    .emoji-bullet {
+      margin-right: 8px;
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .small-highlight {
+      font-size: 11px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      margin-left: 5px;
+      display: inline-block;
+    }
+    
+    .brca1-highlight {
+      background-color: var(--light-3);
+      border-left: 2px solid var(--fashion-3);
+    }
+    
+    .brca2-highlight {
+      background-color: var(--light-4);
+      border-left: 2px solid var(--fashion-4);
+    }
+    
+    .confidence-interval {
+      font-size: 11px;
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    .hazard-ratio {
+      display: inline-block;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0 3px;
+    }
+    
+    .hr-unadjusted {
+      background-color: var(--light-3);
+      border-bottom: 1px solid var(--fashion-3);
+    }
+    
+    .hr-adjusted {
+      background-color: var(--light-4);
+      border-bottom: 1px solid var(--fashion-4);
+    }
+    
+    .dotted-list {
+      list-style-type: none;
+      margin-left: 15px;
+    }
+    
+    .dotted-list li {
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 8px;
+    }
+    
+    .dotted-list li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--fashion-4);
+      font-weight: bold;
+    }
+    
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .treatment-item {
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+    
+    .treatment-title {
+      font-size: 12px;
+      color: var(--fashion-1);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .treatment-stats {
+      display: flex;
+      justify-content: space-around;
+      font-size: 11px;
+    }
+    
+    .treatment-data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .treatment-value {
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .treatment-label {
+      font-size: 10px;
+      color: #64748b;
+    }
+    
+    .ribbon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+    }
+    
+    .ribbon:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 30px 30px 0;
+      border-color: transparent var(--fashion-3) transparent transparent;
+    }
+    
+    .infographic-section {
+      position: relative;
+      padding: 20px;
+      margin-top: 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .infographic-title {
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      background-color: var(--fashion-1);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 18px;
+    }
+    
+    .timeline {
+      position: relative;
+      margin: 30px 0;
+      padding-left: 30px;
+    }
+    
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--fashion-3), var(--fashion-4));
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid var(--fashion-4);
+    }
+    
+    .timeline-year {
+      font-weight: bold;
+      color: var(--fashion-1);
+      margin-bottom: 5px;
+    }
+    
+    .timeline-content {
+      font-size: 13px;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      margin: 0 3px;
+    }
+    
+    .badge-primary {
+      background-color: var(--light-3);
+      color: var(--fashion-1);
+    }
+    
+    .badge-secondary {
+      background-color: var(--light-4);
+      color: var(--fashion-1);
+    }
+    
+    .authors-note {
+      font-size: 11px;
+      font-style: italic;
+      color: #64748b;
+      text-align: right;
+      margin-top: 5px;
+    }
+    
+    .dual-stat {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+    
+    .dual-stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    
+    .dual-stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .dual-stat-label {
+      font-size: 12px;
+      text-align: center;
+      max-width: 120px;
+    }
+    
+    .dual-stat-item:not(:last-child):after {
+      content: "vs";
+      position: absolute;
+      right: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .molecular-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 15px 0;
+    }
+    
+    .molecular-table th, .molecular-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px;
+      text-align: center;
+    }
+    
+    .molecular-table th {
+      background-color: var(--light-1);
+      color: var(--fashion-1);
+    }
+    
+    .molecular-table .feature {
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    .molecular-table .brca1-col {
+      background-color: var(--light-3);
+    }
+    
+    .molecular-table .brca2-col {
+      background-color: var(--light-4);
+    }
+    
+    .colored-percentage {
+      font-weight: bold;
+    }
+    
+    .high-percentage {
+      color: #dc2626;
+    }
+    
+    .medium-percentage {
+      color: #ea580c;
+    }
+    
+    .low-percentage {
+      color: #65a30d;
+    }
+    
+    .box-note {
+      position: relative;
+      margin: 20px 0;
+      padding: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--fashion-4);
+    }
+    
+    .box-note:before {
+      content: "📝";
+      position: absolute;
+      top: -12px;
+      left: 10px;
+      background-color: white;
+      padding: 0 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .multi-data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .multi-data-item {
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .multi-data-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--fashion-1);
+      margin-bottom: 8px;
+      text-align: center;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 5px;
+    }
+    
+    .multi-data-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .multi-data-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+    
+    .multi-data-label {
+      color: #64748b;
+    }
+    
+    .multi-data-value {
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .survival-comparison {
+      margin: 20px 0;
+    }
+    
+    .survival-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--fashion-1);
+    }
+    
+    .survival-data {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    
+    .survival-type {
+      font-weight: bold;
+      width: 80px;
+    }
+    
+    .survival-stat {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      position: relative;
+    }
+    
+    .survival-stat.brca1 {
+      background-color: var(--light-3);
+      border-radius: 4px 0 0 4px;
+      margin-right: 1px;
+    }
+    
+    .survival-stat.brca2 {
+      background-color: var(--light-4);
+      border-radius: 0 4px 4px 0;
+      margin-left: 1px;
+    }
+    
+    .survival-value {
+      font-weight: bold;
+    }
+    
+    .survival-ci {
+      font-size: 10px;
+      color: #64748b;
+      margin-left: 5px;
+    }
+    
+    .survival-note {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .comparison {
+        flex-direction: column;
+      }
+      
+      .column {
+        min-width: 100%;
+      }
+      
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .date-citation {
+        align-items: flex-start;
+        margin-top: 10px;
+      }
+      
+      .title-container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="title-container">
+        <h1 class="title">若年BRCA保因者の乳がん臨床挙動と診断前BRCA状態の認識</h1>
+        <p class="subtitle">Clinical Behavior of Breast Cancer in Young BRCA Carriers and Prediagnostic Awareness of Germline BRCA Status</p>
+      </div>
+      <div class="date-citation">
+        <div class="date">2025年2月24日発表</div>
+        <div class="citation">Journal of Clinical Oncology（ClinicalTrials.gov identifier: NCT03673306）</div>
+      </div>
+    </header>
+    
+    <div class="main-content">
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">📊 研究概要と方法論</h2>
+          <div class="content">
+            <p>この国際的な多施設共同後ろ向きコホート研究は、<span class="highlight">40歳以下</span>で診断された乳がんを持つ<span class="highlight">BRCA遺伝子変異保因者4,752人</span>を対象に実施されました。</p>
+            
+            <div class="hand-drawn-box primary">
+              <h4>研究目的</h4>
+              <p><span class="emoji-bullet">🔍</span>特定のBRCA遺伝子（BRCA1対BRCA2）に基づく若年BRCA保因者における乳がんの臨床挙動を調査する</p>
+              <p><span class="emoji-bullet">🔍</span>遺伝子検査のタイミング（診断前対診断時）と予後の関連性を評価する</p>
+            </div>
+            
+            <div class="circle-stat primary">
+              <div class="circle-stat-number">4,752</div>
+              <div class="circle-stat-label">研究対象患者数<br>(BRCA1: 3,069人, BRCA2: 1,683人)</div>
+            </div>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>研究デザインの詳細</h4>
+              <ul class="dotted-list">
+                <li><span class="highlight-box highlight-1">世界26カ国78施設</span>で実施された国際共同研究</li>
+                <li>対象期間：<span class="highlight-box highlight-2">2000年1月〜2020年12月</span></li>
+                <li>40歳以下でステージI-III浸潤性乳がんと診断された患者</li>
+                <li>BRCA1またはBRCA2の胚細胞系病的/恐らく病的バリアント（PV）保因者</li>
+                <li>中央値フォローアップ期間：<span class="highlight-box highlight-1">7.8年</span>（IQR, 4.4-12.6年）</li>
+              </ul>
+            </div>
+            
+            <div class="box-note">
+              各施設は現地の臨床慣行に従って診断、ステージング、治療、フォローアップを実施。遺伝子検査と病理検査は各施設で実施されました。ホルモン受容体陽性は免疫染色によって決定された浸潤性腫瘍細胞の少なくとも1%（9施設では10%）でのエストロゲンおよび/またはプロゲステロン受容体の存在として定義されました。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">📈 BRCA1とBRCA2の詳細比較：患者・腫瘍特性</h2>
+          <div class="content">
+            <div class="molecular-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="feature">特性</th>
+                    <th class="brca1-col">BRCA1 (n=3,069)</th>
+                    <th class="brca2-col">BRCA2 (n=1,683)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="feature">診断時年齢中央値</td>
+                    <td>34歳 (IQR 31-37)</td>
+                    <td>35歳 (IQR 32-38)</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">ホルモン受容体陰性</td>
+                    <td class="colored-percentage high-percentage">74.4%</td>
+                    <td class="colored-percentage low-percentage">15.5%</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">高悪性度(G3)腫瘍</td>
+                    <td class="colored-percentage high-percentage">77.5%</td>
+                    <td class="colored-percentage medium-percentage">49.1%</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">T1腫瘍</td>
+                    <td>37.1%</td>
+                    <td>40.5%</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">リンパ節転移なし(N0)</td>
+                    <td class="colored-percentage medium-percentage">56.7%</td>
+                    <td class="colored-percentage low-percentage">41.6%</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">小葉状組織</td>
+                    <td class="colored-percentage low-percentage">1.2%</td>
+                    <td class="colored-percentage low-percentage">5.7%</td>
+                  </tr>
+                  <tr>
+                    <td class="feature">HER2陽性</td>
+                    <td class="colored-percentage low-percentage">4.8%</td>
+                    <td class="colored-percentage low-percentage">11.2%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="key-finding">
+              BRCA1保因者はBRCA2保因者と比較して、より若年（34歳 vs 35歳）で乳がんを発症し、ホルモン受容体陰性（74.4% vs 15.5%）および高悪性度腫瘍（77.5% vs 49.1%）を有する頻度が著しく高いことが特徴的です。この分子生物学的差異は治療選択と予後に影響します。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section tertiary">
+          <h2 class="section-title">💊 BRCA1とBRCA2の治療特性比較</h2>
+          <div class="content">
+            <div class="treatments-grid">
+              <div class="treatment-item">
+                <div class="treatment-title">化学療法</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage high-percentage">94.3%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">85.4%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+                <div class="ribbon"></div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">アントラサイクリン+タキサン</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value">70.7%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value">70.3%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">ホルモン療法（HR+の場合）</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value">89.3%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage high-percentage">95.5%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">乳房温存手術</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">42.9%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage low-percentage">30.6%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+                <div class="ribbon"></div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">腋窩郭清</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">46.9%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">58.6%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">リスク低減乳房切除術</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">57.1%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">56.4%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">リスク低減卵巣卵管切除術</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">51.8%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">50.6%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="treatment-item">
+                <div class="treatment-title">術前化学療法</div>
+                <div class="treatment-stats">
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">47.3%</div>
+                    <div class="treatment-label">BRCA1</div>
+                  </div>
+                  <div class="treatment-data">
+                    <div class="treatment-value colored-percentage medium-percentage">42.7%</div>
+                    <div class="treatment-label">BRCA2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-finding">
+              BRCA1保因者はホルモン受容体陰性腫瘍の頻度が高いため、化学療法の施行率が高く（94.3% vs 85.4%）、乳房温存手術が多く実施されています（42.9% vs 30.6%）。一方、BRCA2保因者は腋窩郭清（58.6% vs 46.9%）とホルモン療法（HR+の場合、95.5% vs 89.3%）がより高頻度で実施されています。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section primary">
+          <h2 class="section-title">⏳ 無病生存期間パターンと詳細分析</h2>
+          <div class="content">
+            <p>BRCA1保因者とBRCA2保因者では、時間経過とともに無病生存期間（DFS）イベントのリスクパターンが明確に異なることが判明しました：</p>
+            
+            <div class="visual-graph">
+              <div class="graph-marker marker-brca1-peak">BRCA1：最初の2年間でピーク</div>
+              <div class="graph-marker marker-brca1-trough">BRCA1：6年目まで減少</div>
+              <div class="graph-marker marker-brca1-second">BRCA1：その後再上昇</div>
+              <div class="graph-marker marker-brca2-rise">BRCA2：最初の3年間で増加</div>
+              <div class="graph-marker marker-brca2-plateau">BRCA2：その後一定</div>
+            </div>
+            
+            <div class="legend">
+              <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--fashion-3);"></div>
+                <span>BRCA1保因者</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--fashion-4);"></div>
+                <span>BRCA2保因者</span>
+              </div>
+            </div>
+            
+            <div class="multi-data-grid">
+              <div class="multi-data-item">
+                <div class="multi-data-title">二次乳がん発生率</div>
+                <div class="multi-data-stats">
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA1:</span>
+                    <span class="multi-data-value">2.12</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA2:</span>
+                    <span class="multi-data-value">1.42</span>
+                  </div>
+                  <div class="authors-note">100人年あたりのイベント</div>
+                </div>
+              </div>
+              
+              <div class="multi-data-item">
+                <div class="multi-data-title">非乳がん原発性悪性腫瘍</div>
+                <div class="multi-data-stats">
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA1:</span>
+                    <span class="multi-data-value">0.70</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA2:</span>
+                    <span class="multi-data-value">0.45</span>
+                  </div>
+                  <div class="authors-note">100人年あたりのイベント</div>
+                </div>
+              </div>
+              
+              <div class="multi-data-item">
+                <div class="multi-data-title">遠隔再発</div>
+                <div class="multi-data-stats">
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA1:</span>
+                    <span class="multi-data-value">1.51</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA2:</span>
+                    <span class="multi-data-value">2.06</span>
+                  </div>
+                  <div class="authors-note">100人年あたりのイベント</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="survival-comparison">
+              <div class="survival-header">
+                <div>生存指標</div>
+                <div>BRCA1</div>
+                <div>BRCA2</div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年DFS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value">63.8%</span>
+                  <span class="survival-ci">(95% CI, 61.8-65.8)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">66.2%</span>
+                  <span class="survival-ci">(95% CI, 63.5-68.9)</span>
+                </div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年BCSS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value">88.1%</span>
+                  <span class="survival-ci">(95% CI, 86.7-89.4)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">88.9%</span>
+                  <span class="survival-ci">(95% CI, 86.9-90.7)</span>
+                </div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年OS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value">87.5%</span>
+                  <span class="survival-ci">(95% CI, 86.1-88.8)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">87.9%</span>
+                  <span class="survival-ci">(95% CI, 85.8-89.7)</span>
+                </div>
+              </div>
+              
+              <div class="survival-note">DFS=無病生存期間、BCSS=乳がん特異的生存率、OS=全生存率</div>
+            </div>
+            
+            <div class="key-finding">
+              BRCA1保因者とBRCA2保因者間の全体的な生存率は類似していますが、時間経過に伴うイベントリスクパターンは大きく異なります。BRCA1保因者は最初の8年間でBCSSとOSイベントリスクが高く、その後はBRCA2保因者の方がリスクが高まります。
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">🧬 遺伝子検査のタイミングの影響：詳細分析</h2>
+          <div class="content">
+            <p>BRCA検査のタイミングによる臨床的特徴と予後の詳細な比較結果：</p>
+            
+            <div class="comparison">
+              <div class="comparison-item brca1">
+                <h4>診断前に検査 (n=411)</h4>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">T1腫瘍:</span> <span class="data-point-value colored-percentage medium-percentage">61.3%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">リンパ節転移なし(N0):</span> <span class="data-point-value colored-percentage medium-percentage">65.9%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">化学療法:</span> <span class="data-point-value">84.4%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">術前化学療法:</span> <span class="data-point-value">38.0%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">腋窩郭清:</span> <span class="data-point-value">37.5%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">アントラサイクリンフリー<br>タキサン療法:</span> <span class="data-point-value">8.4%</span>
+                </div>
+              </div>
+              <div class="comparison-item brca2">
+                <h4>診断時に検査 (n=1,671)</h4>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">T1腫瘍:</span> <span class="data-point-value colored-percentage low-percentage">32.4%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">リンパ節転移なし(N0):</span> <span class="data-point-value colored-percentage medium-percentage">50.8%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">化学療法:</span> <span class="data-point-value colored-percentage high-percentage">92.9%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">術前化学療法:</span> <span class="data-point-value colored-percentage medium-percentage">57.7%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">腋窩郭清:</span> <span class="data-point-value colored-percentage medium-percentage">47.4%</span>
+                </div>
+                <div class="data-point">
+                  <i>📌</i> <span class="data-point-label">アントラサイクリンフリー<br>タキサン療法:</span> <span class="data-point-value">4.4%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="hand-drawn-box tertiary">
+              <h4>リスク低減手術実施率</h4>
+              <div class="dual-stat">
+                <div class="dual-stat-item">
+                  <div class="dual-stat-value">78.6%</div>
+                  <div class="dual-stat-label">診断前検査：リスク低減乳房切除術</div>
+                </div>
+                <div class="dual-stat-item">
+                  <div class="dual-stat-value">63.4%</div>
+                  <div class="dual-stat-label">診断時検査：リスク低減乳房切除術</div>
+                </div>
+              </div>
+              <div class="dual-stat">
+                <div class="dual-stat-item">
+                  <div class="dual-stat-value">55.7%</div>
+                  <div class="dual-stat-label">診断前検査：リスク低減卵巣卵管切除術</div>
+                </div>
+                <div class="dual-stat-item">
+                  <div class="dual-stat-value">49.7%</div>
+                  <div class="dual-stat-label">診断時検査：リスク低減卵巣卵管切除術</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="survival-comparison">
+              <div class="survival-header">
+                <div>生存指標</div>
+                <div>診断前検査</div>
+                <div>診断時検査</div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年DFS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value">73.3%</span>
+                  <span class="survival-ci">(95% CI, 67.3-78.4)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">70.4%</span>
+                  <span class="survival-ci">(95% CI, 67.5-73.1)</span>
+                </div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年BCSS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value colored-percentage high-percentage">92.5%</span>
+                  <span class="survival-ci">(95% CI, 88.6-95.2)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">87.8%</span>
+                  <span class="survival-ci">(95% CI, 85.6-89.7)</span>
+                </div>
+              </div>
+              
+              <div class="survival-data">
+                <div class="survival-type">8年OS率</div>
+                <div class="survival-stat brca1">
+                  <span class="survival-value colored-percentage high-percentage">90.7%</span>
+                  <span class="survival-ci">(95% CI, 86.5-94.0)</span>
+                </div>
+                <div class="survival-stat brca2">
+                  <span class="survival-value">87.4%</span>
+                  <span class="survival-ci">(95% CI, 85.2-89.4)</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="hand-drawn-box quaternary">
+              <h4>ハザード比（HR）の詳細分析</h4>
+              <p>無病生存期間（DFS）:</p>
+              <ul style="list-style-type: none;">
+                <li><span class="emoji-bullet">📊</span> 非調整HR: <span class="hazard-ratio hr-unadjusted">0.80</span> (95% CI, 0.63-1.01)</li>
+                <li><span class="emoji-bullet">📊</span> 調整HR: <span class="hazard-ratio hr-adjusted">0.91</span> (95% CI, 0.71-1.16)</li>
+              </ul>
+              <p>乳がん特異的生存率（BCSS）:</p>
+              <ul style="list-style-type: none;">
+                <li><span class="emoji-bullet">📊</span> 非調整HR: <span class="hazard-ratio hr-unadjusted">0.56</span> (95% CI, 0.36-0.87)</li>
+                <li><span class="emoji-bullet">📊</span> 調整HR: <span class="hazard-ratio hr-adjusted">0.68</span> (95% CI, 0.43-1.09)</li>
+              </ul>
+              <p>全生存率（OS）:</p>
+              <ul style="list-style-type: none;">
+                <li><span class="emoji-bullet">📊</span> 非調整HR: <span class="hazard-ratio hr-unadjusted">0.61</span> (95% CI, 0.40-0.92)</li>
+                <li><span class="emoji-bullet">📊</span> 調整HR: <span class="hazard-ratio hr-adjusted">0.74</span> (95% CI, 0.47-1.15)</li>
+              </ul>
+              <div class="authors-note">調整因子：国、診断年、特定BRCA遺伝子、グレード、腫瘍サイズ、リンパ節状態、腋窩手術、化学療法</div>
+            </div>
+            
+            <div class="key-finding">
+              診断前にBRCA状態を認識していた患者は、より早期のがん検出（小さな腫瘍、少ないリンパ節転移）、治療負担の軽減（化学療法・腋窩郭清の減少）、および高いリスク低減手術実施率と関連していました。非調整全生存率は診断前検査群で有意に改善したものの（HR 0.61）、腫瘍ステージなどの交絡因子で調整後、統計的有意性は失われました（調整HR 0.74）。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">🔬 サブグループ分析：ホルモン受容体状態による違い</h2>
+          <div class="content">
+            <div class="infographic-section">
+              <div class="infographic-title">ホルモン受容体陽性乳がん</div>
+              
+              <div class="molecular-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="feature">特性</th>
+                      <th class="brca1-col">BRCA1 (n=736)</th>
+                      <th class="brca2-col">BRCA2 (n=1,394)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="feature">エンドクリン療法</td>
+                      <td class="colored-percentage medium-percentage">89.3%</td>
+                      <td class="colored-percentage high-percentage">95.5%</td>
+                    </tr>
+                    <tr>
+                      <td class="feature">タモキシフェン単独</td>
+                      <td class="colored-percentage medium-percentage">38.0%</td>
+                      <td class="colored-percentage medium-percentage">34.3%</td>
+                    </tr>
+                    <tr>
+                      <td class="feature">タモキシフェン+LHRHa</td>
+                      <td>25.4%</td>
+                      <td>28.8%</td>
+                    </tr>
+                    <tr>
+                      <td class="feature">エンドクリン療法期間中央値</td>
+                      <td>58ヶ月</td>
+                      <td>60ヶ月</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="survival-comparison">
+                <div class="survival-header">
+                  <div>生存指標</div>
+                  <div>BRCA1 HR+</div>
+                  <div>BRCA2 HR+</div>
+                </div>
+                
+                <div class="survival-data">
+                  <div class="survival-type">8年DFS率</div>
+                  <div class="survival-stat brca1">
+                    <span class="survival-value">64.2%</span>
+                  </div>
+                  <div class="survival-stat brca2">
+                    <span class="survival-value">66.3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="infographic-section">
+              <div class="infographic-title">ホルモン受容体陰性乳がん</div>
+              
+              <div class="molecular-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="feature">特性</th>
+                      <th class="brca1-col">BRCA1 (n=2,282)</th>
+                      <th class="brca2-col">BRCA2 (n=261)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="feature">化学療法</td>
+                      <td class="colored-percentage high-percentage">96.4%</td>
+                      <td class="colored-percentage high-percentage">95.3%</td>
+                    </tr>
+                    <tr>
+                      <td class="feature">アントラサイクリン+タキサン</td>
+                      <td class="colored-percentage high-percentage">72.5%</td>
+                      <td class="colored-percentage high-percentage">76.2%</td>
+                    </tr>
+                    <tr>
+                      <td class="feature">術前化学療法</td>
+                      <td class="colored-percentage medium-percentage">50.5%</td>
+                      <td class="colored-percentage medium-percentage">52.9%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="survival-comparison">
+                <div class="survival-header">
+                  <div>生存指標</div>
+                  <div>BRCA1 HR-</div>
+                  <div>BRCA2 HR-</div>
+                </div>
+                
+                <div class="survival-data">
+                  <div class="survival-type">8年DFS率</div>
+                  <div class="survival-stat brca1">
+                    <span class="survival-value">63.7%</span>
+                  </div>
+                  <div class="survival-stat brca2">
+                    <span class="survival-value">65.1%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="key-finding">
+              ホルモン受容体状態によるサブグループ分析でも、BRCA1とBRCA2保因者間で生存率の差は認められませんでした。ホルモン受容体陽性腫瘍のBRCA2保因者はエンドクリン療法の使用頻度が高く（95.5% vs 89.3%）、ホルモン受容体陰性腫瘍では両グループとも高頻度で化学療法が施行されています（BRCA1: 96.4%, BRCA2: 95.3%）。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section tertiary">
+          <h2 class="section-title">📈 DFSイベントタイプと転帰パターンの詳細</h2>
+          <div class="content">
+            <div class="table-container">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>DFSイベントタイプ</th>
+                    <th>BRCA1 (100人年あたり)</th>
+                    <th>BRCA2 (100人年あたり)</th>
+                    <th>差異</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>局所再発</td>
+                    <td>0.92</td>
+                    <td>0.82</td>
+                    <td><span class="small-highlight brca1-highlight">+0.10</span></td>
+                  </tr>
+                  <tr>
+                    <td>領域再発</td>
+                    <td>0.30</td>
+                    <td>0.22</td>
+                    <td><span class="small-highlight brca1-highlight">+0.08</span></td>
+                  </tr>
+                  <tr>
+                    <td>遠隔再発</td>
+                    <td>1.51</td>
+                    <td>2.06</td>
+                    <td><span class="small-highlight brca2-highlight">+0.55</span></td>
+                  </tr>
+                  <tr>
+                    <td>二次性乳がん</td>
+                    <td>2.12</td>
+                    <td>1.42</td>
+                    <td><span class="small-highlight brca1-highlight">+0.70</span></td>
+                  </tr>
+                  <tr>
+                    <td>非乳がん原発性悪性腫瘍</td>
+                    <td>0.70</td>
+                    <td>0.45</td>
+                    <td><span class="small-highlight brca1-highlight">+0.25</span></td>
+                  </tr>
+                  <tr>
+                    <td>死亡（再発・転移なし）</td>
+                    <td>0.18</td>
+                    <td>0.17</td>
+                    <td><span class="small-highlight brca1-highlight">+0.01</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="box-note">
+              <p><span class="emoji-bullet">📝</span><b>無病生存期間イベントの時間的パターン：</b></p>
+              <ul class="dotted-list">
+                <li><b>BRCA1保因者：</b>最初の2年間でハザード率が高く、その後6年目まで減少し、再び上昇。これは初期のリスクが高く、その後の二次がんリスクが増加することを示しています。</li>
+                <li><b>BRCA2保因者：</b>最初の3年間でハザード率が徐々に増加し、その後は一定のレベルで安定。より継続的なリスクパターンを示しています。</li>
+                <li><b>重要な差異：</b>BRCA1保因者は二次乳がんと非乳がん原発性悪性腫瘍のリスクが高く、BRCA2保因者は遠隔再発のリスクが高いことが特徴的です。</li>
+              </ul>
+            </div>
+            
+            <div class="key-finding">
+              BRCA1保因者はBRCA2保因者に比べて二次性乳がん（2.12 vs 1.42）と非乳がん原発性悪性腫瘍（0.70 vs 0.45）の発生率が高い一方、遠隔再発率は低い（1.51 vs 2.06）ことが明らかになりました。この違いは、遺伝子特異的なリスクと腫瘍生物学の違いを反映しており、サーベイランスと予防戦略の個別化の重要性を示しています。
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <div class="column">
+        <section class="section primary">
+          <h2 class="section-title">🔍 遺伝子検査とBRCA認識の重要性</h2>
+          <div class="content">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2000-2010年</div>
+                <div class="timeline-content">
+                  乳がん診断後のBRCA検査が主流。家族歴や腫瘍生物学に基づき選択的に実施。
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2012年11月</div>
+                <div class="timeline-content">
+                  若年乳がん患者の国際コンセンサス会議（BCY1）で、家族歴や腫瘍生物学に関わらず、若年発症（40歳以下）を遺伝カウンセリング紹介の基準とすることを推奨。
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2010年代中期〜</div>
+                <div class="timeline-content">
+                  BRCA保因者の集中サーベイランスの効果が証明され、25-30歳からのスクリーニングが推奨されるようになる。
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2000-2020年</div>
+                <div class="timeline-content">
+                  本研究対象期間。この間、遺伝子検査の適応と意義が大きく変化。
+                </div>
+              </div>
+            </div>
+            
+            <div class="hand-drawn-box tertiary">
+              <h4>若年女性におけるサーベイランスの状況</h4>
+              <ul class="dotted-list">
+                <li>一般リスクの40歳未満の女性には乳がんスクリーニングは推奨されていない</li>
+                <li>BRCA保因者を含む高リスク女性は25-30歳から集中サーベイランスの対象となる</li>
+                <li>BRCA保因者でのスクリーニングは早期診断に有効であることが証明されている</li>
+                <li>若年女性におけるBRCA状態の診断前認識と予後の関連性に関する具体的なデータが限られていた</li>
+              </ul>
+            </div>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>診断前BRCA検査の詳細分析</h4>
+              <p>本研究では診断前にBRCA検査を受けた患者（n=411）と診断時に検査を受けた患者（n=1,671）を比較しました。診断前検査群の特徴：</p>
+              <ul class="dotted-list">
+                <li>より小さな腫瘍（T1: 61.3% vs 32.4%）</li>
+                <li>リンパ節転移減少（N0: 65.9% vs 50.8%）</li>
+                <li>化学療法施行率低下（84.4% vs 92.9%）</li>
+                <li>術前化学療法減少（38.0% vs 57.7%）</li>
+                <li>腋窩郭清減少（37.5% vs 47.4%）</li>
+                <li>リスク低減手術実施率向上（乳房切除術: 78.6% vs 63.4%、卵巣卵管切除術: 55.7% vs 49.7%）</li>
+              </ul>
+            </div>
+            
+            <div class="box-note">
+              <p><span class="emoji-bullet">⚠️</span><b>調整ハザード比の解釈：</b></p>
+              <p>診断前のBRCA検査は非調整解析では全生存率の有意な改善（HR 0.61 [95% CI, 0.40-0.92]）と関連していましたが、腫瘍ステージなどの交絡因子で調整後、統計的有意性は失われました（調整HR 0.74 [95% CI, 0.47-1.15]）。</p>
+              <p>これは、検査タイミング自体ではなく、診断前検査を受けた患者の早期診断と早期ステージが予後改善の主な要因である可能性を示唆しています。</p>
+            </div>
+            
+            <div class="key-finding">
+              診断前BRCA検査は早期乳がん検出、治療負担軽減、そして非調整全生存率の改善と関連していました。これは、BRCA保因者を特定するための取り組みを強化し、適切なサーベイランスを提供することの重要性を示しています。特に若年女性では、BRCA変異保因者の早期同定が臨床転帰を改善する可能性があります。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section secondary">
+          <h2 class="section-title">🔑 研究の主要知見と臨床的意義</h2>
+          <div class="content">
+            <div class="hand-drawn-box primary">
+              <h4>主要な知見</h4>
+              <ul class="dotted-list">
+                <li><b>BRCA1とBRCA2の腫瘍生物学的差異：</b> BRCA1保因者はホルモン受容体陰性（74.4% vs 15.5%）・高悪性度腫瘍（77.5% vs 49.1%）を多く有し、BRCA2保因者はホルモン受容体陽性腫瘍が多い（82.8% vs 24.0%）</li>
+                <li><b>治療特性の差異：</b> BRCA1保因者は化学療法実施率が高く（94.3% vs 85.4%）、BRCA2保因者はホルモン療法実施率が高い（HR+の場合、95.5% vs 89.3%）</li>
+                <li><b>DFSイベントの差異：</b> BRCA1保因者は二次性乳がん（2.12 vs 1.42）と非乳がん原発性悪性腫瘍（0.70 vs 0.45）が多く、BRCA2保因者は遠隔再発（2.06 vs 1.51）が多い</li>
+                <li><b>時間経過に伴うリスクパターンの差異：</b> BRCA1保因者は初期のリスクが高く後に減少、BRCA2保因者は徐々に増加し一定を保つ</li>
+                <li><b>診断前BRCA検査の利点：</b> 早期診断（61.3% vs 32.4%がT1腫瘍）、治療負担軽減、非調整全生存率の改善（HR 0.61）</li>
+              </ul>
+            </div>
+            
+            <div class="hand-drawn-box secondary">
+              <h4>臨床的意義</h4>
+              <p><span class="badge badge-primary">個別化医療</span> <span class="badge badge-secondary">サーベイランス</span> <span class="badge badge-primary">予防戦略</span></p>
+              <ul class="dotted-list">
+                <li>BRCA1保因者とBRCA2保因者では腫瘍生物学と臨床挙動が異なるため、遺伝子特異的なサーベイランス、予防、治療、サバイバーシップ戦略の必要性が示された</li>
+                <li>BRCA1保因者はBRCA2保因者よりも若く発症し、二次がんリスクが高いため、より集中的なサーベイランスが必要かもしれない</li>
+                <li>健康な個人でのBRCA状態の早期認識は早期診断、治療負担軽減、予後改善につながる可能性がある</li>
+                <li>遺伝子検査の拡大により、より多くのBRCA保因者が早期に同定され、適切な医療介入を受けられる可能性がある</li>
+              </ul>
+            </div>
+            
+            <div class="box-note">
+              <p><span class="emoji-bullet">🔍</span><b>研究の強みと限界：</b></p>
+              <p><b>強み：</b> 若年BRCA保因者のみを対象とした大規模なコホート（4,752人）、世界26カ国からのデータ、長期フォローアップ（中央値7.8年）</p>
+              <p><b>限界：</b> 後ろ向き研究デザイン、施設間での診断・治療・フォローアップの違い、20年の研究期間中の診療変化、予防戦略に関する情報の欠如、健康志向バイアスの可能性</p>
+            </div>
+            
+            <div class="key-finding">
+              この世界的研究は、BRCA1とBRCA2遺伝子変異が若年乳がん患者の臨床挙動に異なる影響を与えることを示し、遺伝子特異的なリスク評価とケア戦略の重要性を強調しています。また、健康な個人でのBRCA変異の早期同定が早期診断とそれに伴う治療負担の軽減をもたらし、より良い予後につながる可能性があることを示しています。
+            </div>
+          </div>
+        </section>
+        
+        <section class="section tertiary">
+          <h2 class="section-title">🔮 今後の展望と臨床への応用</h2>
+          <div class="content">
+            <div class="multi-data-grid">
+              <div class="multi-data-item">
+                <div class="multi-data-title">サーベイランスと予防</div>
+                <div class="multi-data-stats">
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA1特異的戦略</span>
+                    <span class="multi-data-value">✓</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">BRCA2特異的戦略</span>
+                    <span class="multi-data-value">✓</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">年齢に基づくアプローチ</span>
+                    <span class="multi-data-value">✓</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="multi-data-item">
+                <div class="multi-data-title">遺伝子検査の拡大</div>
+                <div class="multi-data-stats">
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">カスケード検査</span>
+                    <span class="multi-data-value">✓</span>
+                  </div>
+                  <div class="multi-data-stat">
+                    <span class="multi-data-label">若年乳がん患者全例</span>
+                    <span class="multi-data-value">✓</span>
+                  </div>
+                  <div class="multi-data-stat">
